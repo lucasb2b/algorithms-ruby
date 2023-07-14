@@ -1,22 +1,33 @@
 array = [2,5,8,12,16,23,38,56,72,91] # Array de números
-key = 56 # Elemento a ser encontrado
+key = 12 # Elemento a ser encontrado
 
-def leftSide(array)
-  
+# Primeiro passo
+# Retornar a metade de um array
+
+def splitArray(array, key)
+  # Receber um array, Dividi-lo e retornar a parte conveniente
+  sizeArray = array.length # Pegar o comprimento total
+  halfIndex = (sizeArray / 2) - 1 # Temos aqui o índice do elemento do meio
+  if array[halfIndex] == key then
+    puts "Achou no meio do array"
+  elsif key < array[halfIndex] then
+    puts "Lado Esquerdo"
+    
+    leftSide(array,key)
+  else
+    puts "Lado Direito"
+    rightSide(array,key)
+  end
 end
 
-def rightSide(array)
-
+def leftSide(array,key)
 end
 
-# Primeiro Passo Descobrir o meio do Array
-midElement = (array.length / 2) - 1
-if array[midElement] == key then
-  puts "Achou"
-elsif key < array[midElement] then
-  puts "#{array[midElement]} e #{key}"
-  puts "Lado Esquerdo"
-else
-  puts "#{array[midElement]} e #{key}"
-  puts "Lado Direito"
-end 
+def rightSide(array,key)
+end
+
+def calc(array, key) 
+  splitArray(array,key)
+end
+
+calc(array,key)
