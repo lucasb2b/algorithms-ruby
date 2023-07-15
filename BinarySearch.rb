@@ -1,5 +1,5 @@
 array = [2,5,8,12,16,23,38,56,72,91] # Array de números
-key = 38 # Elemento a ser encontrado
+key = 8 # Elemento a ser encontrado
 
 # Primeiro passo
 # Retornar a metade de um array
@@ -10,41 +10,33 @@ def splitArray(array, key)
   halfIndex = (sizeArray / 2) - 1 # Temos aqui o índice do elemento do meio
   if array[halfIndex] == key then
     puts "Achou no meio do array"
-    puts "Achou o elemento #{array[halfIndex]}" 
+    puts "Achou o elemento #{array[halfIndex]}"
   elsif key < array[halfIndex] then
     i = 0
     newArray = []
-    while i < halfIndex do
+    while i <= halfIndex do
       newArray << array[i]
       i += 1
     end
     puts "Lado Esquerdo"
     puts newArray
-    leftSide(newArray,key)
+    splitArray(newArray,key)
   else
     i = array.length
     newArray = []
-    while i > halfIndex do
+    while i >= halfIndex do
       newArray << array[i]
       i = i - 1
     end
     puts "Lado Direito"
     reverseArray = newArray.reverse
     puts reverseArray
-    rightSide(reverseArray,key)
+    splitArray(reverseArray,key)
   end
 end
 
-def leftSide(array,key)
+def binarySearch(array, key) 
   splitArray(array,key)
 end
 
-def rightSide(array,key)
-  splitArray(array,key)
-end
-
-def calc(array, key) 
-  splitArray(array,key)
-end
-
-calc(array,key)
+binarySearch(array,key)
