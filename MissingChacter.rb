@@ -1,29 +1,30 @@
+require 'set'
+
 def missing_character(phrase = 0)
-  #alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
   alphabet = ('a'..'z').to_a
-  # Colocar a string em minúsculo
   downcase_string = phrase.downcase
-  # Remover espaços em branco, pontos, vírgulas
   phrase_sanitize = downcase_string.gsub(/[\s,\.]/, '')
-  # Separar letra a letra colocando em um array
   array_letter = phrase_sanitize.chars
 
-  i = 0
-  m = 0
+  # Criando um conjunto com todas as letras do alfabeto
+  alphabet_set = Set.new(alphabet)
 
-  while i < array_letter.length
-    j = 0
-    while j < alphabet.length
-      if array_letter[i] == alphabet[j]
-        m = m + 1
-      end
-      j = j + 1
-    end
-    i += 1
+  # Removendo as letras da frase do conjunto
+  array_letter.each do |letter|
+    alphabet_set.delete(letter)
   end
 
-  return alphabet.length - m
+  # Convertendo o conjunto de letras ausentes para um array
+  letters_missing = alphabet_set.to_a
+
+  # Exibindo as letras ausentes em um puts
+  puts "Letras ausentes na frase:"
+  puts letters_missing.join(', ')
+
+  # Retorna a quantidade de letras ausentes
+  return letters_missing.size
+
 end
 
-ok = missing_character("The quick brown fox jumps over the lazy dog.")
-puts ok
+ok = missing_character("Eu sou o melhor dos mundos")
+puts "Quantidade de letras ausentes: #{ok}"
